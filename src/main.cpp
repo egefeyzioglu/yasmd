@@ -1,5 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include <format>
+#include <vector>
+#include <regex>
+
+#include "token.hpp"
 
 constexpr char usage[] = "Usage: {} infile outfile";
 
@@ -14,4 +19,8 @@ int main(int argc, char **argv){
         return EXIT_FAILURE;
     }
     
+    std::ifstream infile(argv[1]);
+    std::stringstream source_ss;
+    source_ss << infile.rdbuf();
+    std::cout << Tokenizer::tokenize(source_ss.str()) << std::endl;
 }
