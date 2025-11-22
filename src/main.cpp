@@ -5,6 +5,7 @@
 #include <regex>
 
 #include "token.hpp"
+#include "ast.hpp"
 
 constexpr char usage[] = "Usage: {} infile outfile";
 
@@ -22,5 +23,6 @@ int main(int argc, char **argv){
     std::ifstream infile(argv[1]);
     std::stringstream source_ss;
     source_ss << infile.rdbuf();
-    std::cout << Tokenizer::tokenize(source_ss.str(), std::string(argv[1])) << std::endl;
+    std::vector<std::unique_ptr<Token>> tokens = Tokenizer::tokenize(source_ss.str(), std::string(argv[1]));
+    std::cout << Parser::parse(std::move(tokens));
 }
