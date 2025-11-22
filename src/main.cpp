@@ -22,5 +22,5 @@ int main(int argc, char **argv){
     std::ifstream infile(argv[1]);
     std::stringstream source_ss;
     source_ss << infile.rdbuf();
-    std::cout << Tokenizer::tokenize(source_ss.str()) << std::endl;
+    std::cout << Tokenizer::tokenize(source_ss.str(), std::string(argv[1])) << std::endl;
 }
