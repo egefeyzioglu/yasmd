@@ -2,7 +2,8 @@
 ```
 document = *node
 node = paragraph | heading
-paragraph = *char
+paragraph = *string
+string = *char
 heading = h1|h2|h3
 h1 = "#" *char
 h2 = "##" *char
